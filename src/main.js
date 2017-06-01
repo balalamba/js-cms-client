@@ -9,14 +9,12 @@ import router from './router'
 import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.css'
 import { store } from './store/store'
-
 //console.log(router)
 window.axios = require('axios');
 //Vue.prototype.$http = axios;
 Vue.use(Vuex)
 Vue.use(VueAxios, axios)
 Vue.use(VueMaterial)
-
 
 Vue.material.registerTheme({
   app: {
@@ -49,8 +47,7 @@ new Vue({
 
 router.beforeEach((to, from, next) => {
   if(to.meta.requiresAuth) {
-    const authUser = store.state.user;
-    if (authUser && authUser.isAdmin && authUser.isActive) {
+    if (store.getters.checkRoles) {
       next()
     }
     else {

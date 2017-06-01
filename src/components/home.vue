@@ -25,7 +25,7 @@
         
         <md-button  v-if="!user.name" class="md-icon-button" @click.native="signin()"><md-icon>done</md-icon></md-button> 
         <md-layout v-if="user.name" md-align="end" >
-          <router-link v-if="user.isAdmin" :to="{ name: 'Admin' }"><md-button class="md-icon-button md-accent"><md-icon >lock outline</md-icon></md-button></router-link>
+          <router-link v-if="$store.getters.checkRoles" :to="{ name: 'Admin' }"><md-button class="md-icon-button md-accent"><md-icon >lock outline</md-icon></md-button></router-link>
           <md-button class="md-icon-button" @click.native="logOut()"><md-icon>input</md-icon></md-button>
         </md-layout>
 
@@ -73,6 +73,7 @@
 
 <script>
 //import  axios  from 'axios';
+import { mainconfig } from '../config/mainconfig.js'
 export default {
   name: 'hello',
   // props: {

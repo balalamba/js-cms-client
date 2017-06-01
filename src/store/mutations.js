@@ -15,7 +15,7 @@ export default {
 
   //очищаем или заполняем state , localstorage в зависимости от случая
   updateUserObject(state,payload){
-    console.log(payload)
+    console.log('payload',payload)
   	if(payload === undefined || payload === null){
       console.log("clear LStorage & state.user")
   		localStorage.clear();
@@ -23,8 +23,9 @@ export default {
   	}
   	else {
       console.log("User is fullfil")
-  		localStorage.setItem('user',JSON.stringify(payload));
-    	state.user = payload;
+  		localStorage.setItem('user',JSON.stringify(payload.user));
+      localStorage.setItem('token',JSON.stringify(payload.token));
+    	state.user = payload.user;
   	}
     return state.user;
   }

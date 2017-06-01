@@ -40,6 +40,8 @@
 
 </template>
 <script>
+import { mainconfig } from '../../config/mainconfig.js'
+
 export default {
 	data(){
 		return{
@@ -47,9 +49,6 @@ export default {
 			user:{},
 			blog: {},
 		}
-	},
-	created: function(){
-		this.getUsers();
 	},
 	methods: {
 	toggleLeftSidenav() {
@@ -68,21 +67,7 @@ export default {
 		console.log('Closed: ' + ref);
 	},
 	getBlog(){},
-	getUsers(){
-		return new Promise(function(resolve, reject){
-			axios({
-				method: 'GET',
-				url: 'http://127.0.0.1:8000/api/admin/users'
-			})
-			.then(function (response) {
-				console.log(response);
-				resolve();
-			})
-			.catch(function (error) {
-				console.log(error);
-			});
-		})
-	},
+
 	logOut(){
       this.user = {};
       this.$store.dispatch('logOut');
